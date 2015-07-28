@@ -6,7 +6,7 @@ A wrapper for the Buffer (bufferapp.com) API
 ## Package Dependencies
 * underscore
 * http
-* accounts-buffer [accounts-buffer](https://github.com/rkstar/accounts-buffer)
+* [accounts-buffer](https://github.com/rkstar/accounts-buffer)
 
 ## Usage
 1. `meteor add rkstar:buffer-api`
