@@ -13,26 +13,26 @@ A wrapper for the Buffer (bufferapp.com) API
 2. Use inside `Meteor.method()` calls only! Future versions may allow you to make calls directly from the client, but this is server only for now.
 
 ## Methods (server)
-# user
+### user
 * `user(function(err, response))`
 https://buffer.com/developers/api/user#user
 
-# info
+### info
 * `info(function(err, response))`
 https://buffer.com/developers/api/info#configuration
 
-# profiles
+### profiles
 * `profiles(function(err, response))`
 https://buffer.com/developers/api/profiles#profiles
 
-# schedules
+### schedules
 * `schedules.info(profileId, function(err, response))`
 https://buffer.com/developers/api/profiles#schedules
 
 * `schedules.update(profileId, paramsObject, function(err, response))`
 https://buffer.com/developers/api/profiles#schedulesupdate
 
-# updates
+### updates
 * `updates.byId(updateId, function(err, response))`
 https://buffer.com/developers/api/updates#updatesid
 
@@ -66,7 +66,7 @@ https://buffer.com/developers/api/updates#updatesdestroy
 * `updates.bump(updateId, function(err, response))`
 https://buffer.com/developers/api/updates#updatesmovetotop
 
-# links
+### links
 * `links.shares(url, function(err, response))`
 https://buffer.com/developers/api/links#shares
 
