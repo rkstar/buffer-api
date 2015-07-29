@@ -68,6 +68,7 @@ https://buffer.com/developers/api/updates#updatesmovetotop
 
 # links
 * `links.shares(url, function(err, response))`
+https://buffer.com/developers/api/links#shares
 
 ## Methods (client)
 There are no methods available on the client at this time.
