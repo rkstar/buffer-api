@@ -12,5 +12,12 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2')
-  api.addFiles('buffer-api.js')
+
+  api.use('http')
+  api.use('underscore')
+  api.use('rkstar:accounts-buffer')
+
+  api.export('BufferAPI')
+
+  api.addFiles('buffer-api.js', 'server')
 })
