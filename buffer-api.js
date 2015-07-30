@@ -1,5 +1,5 @@
 BufferAPI = function(defaults){
-  var user = Meteor.users.findOne({_id: this.userId}),
+  var user = Meteor.users.findOne({_id: Meteor.userId()}),
     validate = function(input){
       _.defaults(input, {
         throw: true,
@@ -31,15 +31,19 @@ BufferAPI = function(defaults){
       return valid
     }
 
-  _.extend(defaults,{
+  // sanity!
+  if( !user || !user.services || !user.services.buffer ){
+    throw new Meteor.Error(600, 'Buffer is not configured for this user.')
+  }
+
+  defaults = _.extend(defaults || {},{
     apiUrl: 'https://api.bufferapp.com/1/',
-    access_token: (user.services && user.services.buffer) ? user.services.buffer.access_token : null,
+    access_token: (user.services && user.services.buffer) ? user.services.buffer.accessToken : null,
     profileId: user.services.buffer.id
   })
 
   if( !defaults.access_token ){
     throw new Meteor.Error(501, 'Buffer is not authorized on this user account.  Please connect Buffer account.')
-    return null
   }
 
   var execute = function(options, callback){
@@ -107,7 +111,7 @@ BufferAPI = function(defaults){
     }
 
     var path = 'profiles'
-      path += (profileId) ? '/'+profileId : ''
+    path += (profileId) ? '/'+profileId : ''
 
     execute(path, callback)
   }
@@ -115,12 +119,12 @@ BufferAPI = function(defaults){
   this.schedules = {
     info: function(profileId, callback){
       if( validate({
-        string: profileId,
-        function: callback,
-        error: {
-          string: {error: 501, reason: 'Invalid profile id provided.'}
-        }
-      }).error ){
+          string: profileId,
+          function: callback,
+          error: {
+            string: {error: 501, reason: 'Invalid profile id provided.'}
+          }
+        }).error ){
         return
       }
 
@@ -129,14 +133,14 @@ BufferAPI = function(defaults){
 
     update: function(profileId, params, callback){
       if( validate({
-        string: profileId,
-        object: params,
-        function: callback,
-        error: {
-          string: {error: 501, reason: 'Invalid profile id provided.'},
-          object: {error: 502, reason: 'Invalid parameters provided.'}
-        }
-      }).error ){
+          string: profileId,
+          object: params,
+          function: callback,
+          error: {
+            string: {error: 501, reason: 'Invalid profile id provided.'},
+            object: {error: 502, reason: 'Invalid parameters provided.'}
+          }
+        }).error ){
         return
       }
 
@@ -170,14 +174,15 @@ BufferAPI = function(defaults){
         params = {}
       }
 
-      if( validate({
-          string: profileId,
-          object: params,
-          function: callback,
-          error: {
-            string: {error: 501, reason: 'Invalid profile id provided.'}
-          }
-        }).error ){
+      var valid = validate({
+        string: profileId,
+        object: params,
+        function: callback,
+        error: {
+          string: {error: 501, reason: 'Invalid profile id provided.'}
+        }
+      })
+      if( valid.error ){
         return
       }
 
@@ -193,14 +198,15 @@ BufferAPI = function(defaults){
         params = {}
       }
 
-      if( validate({
-          string: profileId,
-          object: params,
-          function: callback,
-          error: {
-            string: {error: 501, reason: 'Invalid profile id provided.'}
-          }
-        }).error ){
+      var valid = validate({
+        string: profileId,
+        object: params,
+        function: callback,
+        error: {
+          string: {error: 501, reason: 'Invalid profile id provided.'}
+        }
+      })
+      if( valid.error ){
         return
       }
 
@@ -255,14 +261,15 @@ BufferAPI = function(defaults){
         params = {}
       }
 
-      if( validate({
-          string: profileId,
-          object: params,
-          function: callback,
-          error: {
-            string: {error: 501, reason: 'Invalid profile id provided.'}
-          }
-        }).error ){
+      var valid = validate({
+        string: profileId,
+        object: params,
+        function: callback,
+        error: {
+          string: {error: 501, reason: 'Invalid profile id provided.'}
+        }
+      })
+      if( valid.error ){
         return
       }
 
