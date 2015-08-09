@@ -68,8 +68,12 @@ BufferAPI = function(defaults){
     }
 
     HTTP.call(options.method, options.url, {params: options.params}, function(err, response){
-      if( response.statusCode != 200 ){
-        callback(new Meteor.Error(response.data.status_code, response.data.status_message))
+      if( err ){
+        callback(err)
+      } else if( response.statusCode != 200 ){
+        var code = response.data.status_code || response.data.code,
+          msg = response.data.status_message || response.data.message
+        callback(new Meteor.Error(code, msg))
       } else {
         callback(null, response.data)
       }

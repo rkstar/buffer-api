@@ -1,6 +1,6 @@
 Package.describe({
   name: 'rkstar:buffer-api',
-  version: '1.0.0',
+  version: '1.0.1',
   // Brief, one-line summary of the package.
   summary: 'A wrapper for the Buffer API',
   // URL to the Git repository containing the source code for this package.
@@ -15,7 +15,7 @@ Package.onUse(function(api) {
 
   api.use('http')
   api.use('underscore')
-  api.use('rkstar:accounts-buffer')
+  api.use('rkstar:accounts-buffer@1.0.4')
 
   api.export('BufferAPI')
 
