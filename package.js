@@ -1,6 +1,6 @@
 Package.describe({
   name: 'rkstar:buffer-api',
-  version: '1.0.2',
+  version: '1.0.3',
   // Brief, one-line summary of the package.
   summary: 'A wrapper for the Buffer API',
   // URL to the Git repository containing the source code for this package.
