@@ -67,7 +67,7 @@ BufferAPI = function(defaults){
       options.url = defaults.apiUrl + options.url + '.json'
     }
 
-    HTTP.call(options.method, options.url, {params: options.params}, function(err, response){
+    HTTP.call(options.method, options.url, {npmRequestOptions:{form: options.params}}, function(err, response){
       if( err ){
         callback(err)
       } else if( response.statusCode != 200 ){
