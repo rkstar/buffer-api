@@ -312,7 +312,7 @@ BufferAPI = function(defaults){
           object: params,
           function: callback,
           error: {
-            string: {error: 501, reason: 'Invalid profile id provided.'},
+            string: {error: 501, reason: 'Invalid update id provided.'},
             object: {error: 502, reason: 'Invalid parameters provided.'}
           }
         }).error ){
