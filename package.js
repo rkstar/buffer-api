@@ -15,7 +15,7 @@ Package.onUse(function(api) {
 
   api.use('http')
   api.use('underscore')
-  api.use('rkstar:accounts-buffer@1.0.4')
+  api.use('rkstar:accounts-buffer')
 
   api.export('BufferAPI')
 
