@@ -1,5 +1,6 @@
 BufferAPI = function(defaults){
-  var user = Meteor.users.findOne({_id: Meteor.userId()}),
+  var uid = (defaults && defaults.userId) ? defaults.userId : Meteor.userId(),
+    user = Meteor.users.findOne({_id: uid}),
     validate = function(input){
       _.defaults(input, {
         throw: true,
